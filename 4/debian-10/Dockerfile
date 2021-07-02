@@ -41,7 +41,7 @@ ENV BITNAMI_APP_NAME="redmine" \
     SMTP_USER="" \
     RAILS_ENV=production
 
-RUN apt update && apt install build-essential
+RUN apt update && apt install -y build-essential
 RUN cd /opt/bitnami/redmine/plugins && git clone https://github.com/twinslash/redmine_omniauth_google.git
 RUN cd /opt/bitnami/redmine && bundle config unset deployment && bundle install
 
