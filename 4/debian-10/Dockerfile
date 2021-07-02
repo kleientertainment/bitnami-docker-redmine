@@ -38,7 +38,12 @@ ENV BITNAMI_APP_NAME="redmine" \
     SMTP_PASSWORD="" \
     SMTP_PORT="" \
     SMTP_TLS="true" \
-    SMTP_USER=""
+    SMTP_USER="" \
+    RAILS_ENV=production
+
+RUN apt update && apt install build-essential
+RUN cd /opt/bitnami/redmine/plugins && git clone https://github.com/twinslash/redmine_omniauth_google.git
+RUN cd /opt/bitnami/redmine && bundle config unset deployment && bundle install
 
 EXPOSE 3000
 
